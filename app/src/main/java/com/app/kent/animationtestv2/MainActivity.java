@@ -16,12 +16,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.CycleInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -74,9 +71,9 @@ public class MainActivity extends Activity {
             ShapeHolder ball1 = addBall(150f, 25f);
             ShapeHolder ball2 = addBall(250f, 25f);
             ShapeHolder ball3 = addBall(350f, 25f);
-            ShapeHolder ball4 = addBall(450f, 25f);
-            ShapeHolder ball5 = addBall(550f, 25f);
-            ShapeHolder ball6 = addBall(650f, 25f);
+//            ShapeHolder ball4 = addBall(450f, 25f);
+//            ShapeHolder ball5 = addBall(550f, 25f);
+//            ShapeHolder ball6 = addBall(650f, 25f);
         }
 
         private void createAnimation() {
@@ -88,38 +85,42 @@ public class MainActivity extends Activity {
                         0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
                 //ObjectAnimator anim2 = anim1.clone();
                 //anim2.setTarget(balls.get(1)); //anim2 = anim1
+                anim1.setRepeatCount(3);
                 anim1.addUpdateListener(this);
 
                 ObjectAnimator anim2 = ObjectAnimator.ofFloat(balls.get(1), "y",
                         0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
-                anim2.setInterpolator(new AccelerateDecelerateInterpolator());
+                anim2.setInterpolator(new LinearInterpolator());
+                anim2.setRepeatCount(3);
                 anim2.addUpdateListener(this);
 
                 ObjectAnimator anim3 = ObjectAnimator.ofFloat(balls.get(2), "y",
                         0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
                 anim3.setInterpolator(new AccelerateInterpolator());
+                anim3.setRepeatCount(3);
                 anim3.addUpdateListener(this);
 
                 ObjectAnimator anim4 = ObjectAnimator.ofFloat(balls.get(3), "y",
                         0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
                 anim4.setInterpolator(new DecelerateInterpolator());
+                anim4.setRepeatCount(3);
                 anim4.addUpdateListener(this);
 
-                ObjectAnimator anim5 = ObjectAnimator.ofFloat(balls.get(4), "y",
-                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
-                anim5.setInterpolator(new AnticipateInterpolator());
-                anim5.addUpdateListener(this);
-
-                ObjectAnimator anim6 = ObjectAnimator.ofFloat(balls.get(5), "y",
-                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
-                anim6.setInterpolator(new BounceInterpolator());
-                anim6.addUpdateListener(this);
-
-
-                ObjectAnimator anim7 = ObjectAnimator.ofFloat(balls.get(6), "y",
-                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
-                anim6.setInterpolator(new CycleInterpolator(null, null));
-                anim6.addUpdateListener(this);
+//                ObjectAnimator anim5 = ObjectAnimator.ofFloat(balls.get(4), "y",
+//                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
+//                anim5.setInterpolator(new AnticipateInterpolator());
+//                anim5.addUpdateListener(this);
+//
+//                ObjectAnimator anim6 = ObjectAnimator.ofFloat(balls.get(5), "y",
+//                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
+//                anim6.setInterpolator(new BounceInterpolator());
+//                anim6.addUpdateListener(this);
+//
+//
+//                ObjectAnimator anim7 = ObjectAnimator.ofFloat(balls.get(6), "y",
+//                        0f, getHeight() - balls.get(0).getHeight()).setDuration(2000);
+//                anim6.setInterpolator(new CycleInterpolator(null, null));
+//                anim6.addUpdateListener(this);
 
 //                ShapeHolder ball2 = balls.get(2);
 //                ObjectAnimator animDown = ObjectAnimator.ofFloat(ball2, "y",
@@ -138,7 +139,7 @@ public class MainActivity extends Activity {
 //                s2.setTarget(balls.get(3));
 //
                 animation = new AnimatorSet();
-                animation.playTogether(anim1, anim2, anim3, anim4, anim5, anim6, anim7);
+                animation.playTogether(anim1, anim2, anim3, anim4);
                 //animation.playSequentially(s1, s2);
             }
         }
